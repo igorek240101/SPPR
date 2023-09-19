@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPPR.Regress", "SPPR.Regress\SPPR.Regress.csproj", "{CE622D22-A8A1-411F-A031-66C16FF9E981}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPPR.Wine", "SPPR.Wine\SPPR.Wine.csproj", "{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE622D22-A8A1-411F-A031-66C16FF9E981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE622D22-A8A1-411F-A031-66C16FF9E981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE622D22-A8A1-411F-A031-66C16FF9E981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE622D22-A8A1-411F-A031-66C16FF9E981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85BB3EE5-4D30-4D54-B146-2FB837ACEC72}
+	EndGlobalSection
+EndGlobal
