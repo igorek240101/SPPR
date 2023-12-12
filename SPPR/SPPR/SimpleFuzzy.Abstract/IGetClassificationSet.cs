@@ -18,4 +18,16 @@ namespace SPPR.Abstract
 
         string ClassFazififcation(double _class);
     }
+
+    public interface IGetClassificationSetObject : INameable
+    {
+        public string ConnctionString { get; set; }
+        void Reload();
+        object[,] GetTrainSet(int count);
+        object[,] GetTrainSet(double? p);
+        object[,] GetTestSet(int count);
+        object[,] GetTestSet(double? p);
+
+        string ClassFazififcation(double _class);
+    }
 }

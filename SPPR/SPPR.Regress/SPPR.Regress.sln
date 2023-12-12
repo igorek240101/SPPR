@@ -5,7 +5,13 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPPR.Regress", "SPPR.Regress\SPPR.Regress.csproj", "{CE622D22-A8A1-411F-A031-66C16FF9E981}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPPR.Wine", "SPPR.Wine\SPPR.Wine.csproj", "{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPPR.Wine", "SPPR.Wine\SPPR.Wine.csproj", "{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeRule", "TreeRule\TreeRule.csproj", "{7D512BDF-2A92-4EF2-84C6-E8736E88ABE2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinarRegres", "LinarRegres\LinarRegres.csproj", "{BF223C90-D268-4221-9BAE-367EAE3191D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Image", "Image\Image.csproj", "{20B151A8-DF23-4DDC-BF6B-A0E9F793A8BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44EDFA95-9CB5-43CC-B6B3-D4EAA37C2472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D512BDF-2A92-4EF2-84C6-E8736E88ABE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D512BDF-2A92-4EF2-84C6-E8736E88ABE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D512BDF-2A92-4EF2-84C6-E8736E88ABE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D512BDF-2A92-4EF2-84C6-E8736E88ABE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF223C90-D268-4221-9BAE-367EAE3191D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF223C90-D268-4221-9BAE-367EAE3191D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF223C90-D268-4221-9BAE-367EAE3191D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF223C90-D268-4221-9BAE-367EAE3191D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20B151A8-DF23-4DDC-BF6B-A0E9F793A8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B151A8-DF23-4DDC-BF6B-A0E9F793A8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B151A8-DF23-4DDC-BF6B-A0E9F793A8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B151A8-DF23-4DDC-BF6B-A0E9F793A8BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

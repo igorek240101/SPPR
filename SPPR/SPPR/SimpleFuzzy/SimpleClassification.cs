@@ -6,8 +6,12 @@ using SimpleFuzzy.Abstract;
 using TorchSharp;
 using TorchSharp.Modules;
 using SPPR.Abstract;
+using static TorchSharp.TensorExtensionMethods;
 using static TorchSharp.torch;
 using static TorchSharp.torch.optim;
+using System.Collections.Generic;
+using Accord.Math;
+using OxyPlot.Annotations;
 
 namespace SimpleFuzzy
 {
@@ -100,29 +104,52 @@ namespace SimpleFuzzy
             button5.Enabled = true;
         }
 
+        internal class WineNet : torch.nn.Module<Tensor, Tensor>
+        {
+            Sequential sequential1;
+            Sequential sequential2;
+
+            public WineNet(int count, float[,] trainCollection, int inCount, int classCount) : base(nameof(WineNet))
+            {
+                (string, nn.Module<Tensor, Tensor>)[] modules1 = new (string, nn.Module<Tensor, Tensor>)[count * 2 + 1];
+                (string, nn.Module<Tensor, Tensor>)[] modules2 = new (string, nn.Module<Tensor, Tensor>)[count * 2 + 2];
+                modules1[0] = ("fc1", nn.Linear(trainCollection.GetLength(1) - 1, inCount));
+                for (int i = 1; i < modules1.Length - 1; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        modules1[i] = ($"fc{i / 2}", nn.Linear(inCount, inCount));
+                        modules2[i] = ($"fc{i / 2}", nn.Linear(inCount, inCount));
+                    }
+                    else
+                    {
+                        modules1[i] = ($"act{i / 2 + 1}", nn.Sigmoid());
+                        modules2[i] = ($"act{i / 2 + 1}", nn.Sigmoid());
+                    }
+                }
+                modules1[^1] = ($"fc{(modules1.Length - 1) / 2}", nn.Linear(inCount, classCount));
+                modules2[^2] = ($"fc{(modules1.Length - 1) / 2}", nn.Linear(inCount, classCount));
+                modules2[^1] = ($"sm", nn.Softmax(1));
+                sequential1 = nn.Sequential(modules1);
+                sequential2 = nn.Sequential(modules2);
+
+                RegisterComponents();
+            }
+
+            public override Tensor forward(Tensor x)
+            {
+                return sequential1.forward(x);
+            }
+
+            public Tensor inference(Tensor x)
+            {
+                return sequential2.forward(x);
+            }
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
-            float[] array = new float[TrainCollection.GetLength(0) * (TrainCollection.GetLength(1) - 1)];
-            for (int i = 0; i < TrainCollection.GetLength(0); i++)
-            {
-                for (int j = 1; j < TrainCollection.GetLength(1); j++)
-                {
-                    array[i * (TrainCollection.GetLength(1) - 1) + j - 1] = TrainCollection[i, j];
-                }
-            }
-            Tensor trainInput = array;
-            trainInput = trainInput.reshape(TrainCollection.GetLength(0), TrainCollection.GetLength(1) - 1);
-            array = new float[TrainCollection.GetLength(0) * TrainCollection.GetLength(1)];
-            for (int i = 0; i < TrainCollection.GetLength(0); i++)
-            {
-                for (int j = 0; j < TrainCollection.GetLength(1); j++)
-                {
-                    array[i * TrainCollection.GetLength(1) + j] = TrainCollection[i, j];
-                }
-            }
-            Tensor trainOutput = array;
-            trainOutput = trainOutput.reshape(TrainCollection.GetLength(0), TrainCollection.GetLength(1));
-            array = new float[TestCollection.GetLength(0) * (TestCollection.GetLength(1) - 1)];
+            float[] array = new float[TestCollection.GetLength(0) * (TestCollection.GetLength(1) - 1)];
             for (int i = 0; i < TestCollection.GetLength(0); i++)
             {
                 for (int j = 1; j < TestCollection.GetLength(1); j++)
@@ -142,57 +169,136 @@ namespace SimpleFuzzy
             }
             Tensor testOutput = array;
             testOutput = testOutput.reshape(TestCollection.GetLength(0), TestCollection.GetLength(1));
-
-
-            (string, nn.Module<Tensor, Tensor>)[] modules = new (string, nn.Module<Tensor, Tensor>)[(int)numericUpDown2.Value * 2 + 2];
-            modules[0] = ("fc1", nn.Linear(TrainCollection.GetLength(1) - 1, (int)numericUpDown6.Value));
-            for (int i = 1; i < modules.Length - 2; i++)
-            {
-                if (i % 2 == 0)
-                {
-                    modules[i] = ($"fc1{i / 2}", nn.Linear((int)numericUpDown6.Value, (int)numericUpDown6.Value));
-                }
-                else
-                {
-                    modules[i] = ($"act{i / 2 + 1}", nn.Sigmoid());
-                }
-            }
-            modules[^2] = ($"fc1{(modules.Length - 1) / 2}", nn.Linear((int)numericUpDown6.Value, classCount));
-            modules[^1] = ("sm", nn.Softmax(1));
-            var seq = nn.Sequential(modules);
-
-
+            WineNet net = new WineNet((int)numericUpDown2.Value, TrainCollection, (int)numericUpDown6.Value, classCount);
+            int batch_size = (int)numericUpDown3.Value;
             OptimizerHelper opt;
-            if (radioButton1.Checked) opt = optim.Adam(seq.parameters(), (double)numericUpDown5.Value);
-            else opt = optim.SGD(seq.parameters(), (double)numericUpDown5.Value, momentum: (double)numericUpDown7.Value);
+            if (radioButton1.Checked) opt = optim.Adam(net.parameters(), (double)numericUpDown5.Value);
+            else opt = optim.SGD(net.parameters(), (double)numericUpDown5.Value, momentum: (double)numericUpDown7.Value);
+            List<int> order = new List<int>();
+            for (int i = 0; i < TrainCollection.GetLength(0); i++)
+            {
+                order.Add(i);
+            }
             for (int i = 0; i < numericUpDown4.Value; i++)
             {
-                opt.zero_grad();
-                var y = seq.forward(trainInput);
-                var oldLoss = nn.functional.mse_loss(y, trainOutput);
-                //oldLoss.bytes = BitConverter.GetBytes((float)MAE(y, trainOutput, TrainCollection.GetLength(0)));
-                var loss = nn.functional.cross_entropy(y, trainOutput); //radioButton3.Checked ? nn.functional.mse_loss(y, trainOutput) : oldLoss;
-                string s = ((float)loss).ToString();
-                loss.backward();
-                opt.step();
+                order = GetOrder(order);
+                for (int j = 0; j < TrainCollection.GetLength(0); j += batch_size)
+                {
+                    opt.zero_grad();
+
+                    array = new float[(TrainCollection.GetLength(1) - 1) * ((j + 1) * batch_size < TrainCollection.GetLength(0) ? batch_size : TrainCollection.GetLength(0) % batch_size)];
+                    for (int k = 0; k < ((j + 1) * batch_size < TrainCollection.GetLength(0) ? batch_size : TrainCollection.GetLength(0) % batch_size); k++)
+                    {
+                        for (int l = 1; l < TrainCollection.GetLength(1); l++)
+                        {
+                            array[k * (TrainCollection.GetLength(1) - 1) + l - 1] = TrainCollection[order[j + k], l];
+                        }
+                    }
+                    Tensor trainInput = array;
+                    trainInput = trainInput.reshape((j + 1) * batch_size < TrainCollection.GetLength(0) ? batch_size : TrainCollection.GetLength(0) % batch_size, TrainCollection.GetLength(1) - 1);
+                    array = new float[TrainCollection.GetLength(1) * ((j + 1) * batch_size < TrainCollection.GetLength(0) ? batch_size : TrainCollection.GetLength(0) % batch_size)];
+                    for (int k = 0; k < (((j + 1) * batch_size) < TrainCollection.GetLength(0) ? batch_size : TrainCollection.GetLength(0) % batch_size); k++)
+                    {
+                        for (int l = 0; l < TrainCollection.GetLength(1); l++)
+                        {
+                            array[k * TrainCollection.GetLength(1) + l] = TrainCollection[order[j + k], l];
+                        }
+                    }
+                    Tensor trainOutput = array;
+                    trainOutput = trainOutput.reshape((j + 1) * batch_size < TrainCollection.GetLength(0) ? batch_size : TrainCollection.GetLength(0) % batch_size, TrainCollection.GetLength(1));
+                    var y = net.forward(trainInput);
+                    var loss = nn.functional.cross_entropy(y, trainOutput);
+                    loss.backward();
+                    opt.step();
+                }
+                if (i % 100 == 0)
+                {
+                    var subRes = net.forward(testInput);
+                    int[,] subErrorMatrix = new int[classCount, classCount];
+                    for (int j = 0; j < TestCollection.GetLength(0); j++)
+                    {
+                        int ress = (int)subRes[j][0];
+                        subErrorMatrix[(int)TestCollection[j, 0] - 1, (int)subRes[j][0]]++;
+                        //ls1.Points.Add(new ScatterPoint(TestCollection[i].Item1, TestCollection[i].Item2, 3));
+                        //ls2.Points.Add(new ScatterPoint(TestCollection[i].Item1, (double)res[i], 3));
+                    }
+                }
             }
             PlotModel model = new PlotModel();
-            //model.Title = $"net {HasFunc.now.Name}";
+            model.Title = $"Классификация";
             model.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom });
             model.Axes.Add(new LinearAxis { Position = AxisPosition.Left });
-            var ls1 = new ScatterSeries();
-            var ls2 = new ScatterSeries();
-            var res = seq.forward(testInput);
-            for (int i = 0; i < TestCollection.Length; i++)
+            var res = net.inference(testInput);
+            int[,] errorMatrix = new int[classCount, classCount];
+            Dictionary<double, (ScatterSeries, RectangleSeries)> ls = new Dictionary<double, (ScatterSeries, RectangleSeries)>();
+            foreach (var value in ClassKeys)
+                ls.Add(value, (new ScatterSeries(), new RectangleSeries()));
+            for (int i = 0; i < TestCollection.GetLength(0); i++)
             {
-                //ls1.Points.Add(new ScatterPoint(TestCollection[i].Item1, TestCollection[i].Item2, 3));
-                //ls2.Points.Add(new ScatterPoint(TestCollection[i].Item1, (double)res[i], 3));
+                var temp = (double)res[i][0];
+                errorMatrix[(int)TestCollection[i, 0] - 1, (int)Math.Round((double)res[i][0]) - 1]++;
+                ls.TryAdd(TestCollection[i, 0], (new ScatterSeries(), new RectangleSeries()));
+                ls[TestCollection[i, 0]].Item1.Points.Add(new ScatterPoint(TestCollection[i, 1], TestCollection[i, 2], 3));
             }
+            foreach (var value in ls.Values)
+            {
+                model.Series.Add(value.Item1);
+                model.Series.Add(value.Item2);
+            }
+            if (TrainCollection.GetLength(1) == 3)
+            {
+                float[] paint = new float[20000];
+                for (int i = 0; i < 100; i++)
+                {
+                    for (int j = 0; j < 100; j++)
+                    {
+                        paint[(i * 100 + j) * 2] = i / 100.0f;
+                        paint[(i * 100 + j) * 2 + 1] = j / 100.0f;
+                    }
+                }
+                Tensor paintTensor = paint;
+                paintTensor = paintTensor.reshape(10000, 2);
+                var paintRes = net.forward(paintTensor);
+                for(int i = 0; i < 9999; i++)
+                {
+                    double v3 = (int)Math.Round((double)paintRes[i][0]);
+                    v3 = v3 < 1 ? 1 : v3;
+                    v3 = v3 > classCount ? classCount : v3;
+                    model.Annotations.Add(new RectangleAnnotation()
+                    {
+                        MinimumX = paint[i * 2 + 1],
+                        MinimumY = paint[i * 2 + 2],
+                        MaximumX = paint[i * 2 + 1] + 1.01,
+                        MaximumY = paint[i * 2 + 2] + 1.01,
+                        Fill = ls[v3].Item1.ActualMarkerFillColor
+                    });
+                }
+            }
+            model.Annotations.Add(new RectangleAnnotation()
+            {
+                MinimumX = 0,
+                MinimumY = 0,
+                MaximumX = 0.5,
+                MaximumY = 1,
+                Fill = OxyColor.FromArgb(128, 255, 0, 0)
+            });
+
+            plotView3.Model = model;
             var mseLoss = nn.functional.mse_loss(res, testOutput);
             var maeLoss = 0;// MAE(res, testOutput, TestCollection.Length);
             label13.Text = $"MSE : {(double)mseLoss}\r\nMAE : {(double)maeLoss}";
-            model.Series.Add(ls1);
-            model.Series.Add(ls2);
+        }
+
+        private List<int> GetOrder(List<int> input)
+        {
+            var order = new List<int>();
+            while (input.Count > 0)
+            {
+                int index = random.Next(input.Count);
+                order.Add(input[index]);
+                input.RemoveAt(index);
+            }
+            return order;
         }
 
         private Tensor MAE(Tensor first, Tensor second, int count)

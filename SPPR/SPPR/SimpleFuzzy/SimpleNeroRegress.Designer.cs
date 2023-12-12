@@ -1,6 +1,6 @@
-﻿namespace SimpleFuzzy
+﻿namespace SPPR
 {
-    partial class SimpleClassification
+    partial class SimpleNeroRegress
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -37,20 +37,6 @@
             button3 = new Button();
             label8 = new Label();
             button5 = new Button();
-            label9 = new Label();
-            numericUpDown4 = new NumericUpDown();
-            label10 = new Label();
-            numericUpDown5 = new NumericUpDown();
-            label11 = new Label();
-            numericUpDown6 = new NumericUpDown();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            radioButton3 = new RadioButton();
-            radioButton4 = new RadioButton();
-            label12 = new Label();
-            numericUpDown7 = new NumericUpDown();
             label13 = new Label();
             panel3 = new Panel();
             label2 = new Label();
@@ -66,18 +52,23 @@
             numericUpDown8 = new NumericUpDown();
             plotView2 = new OxyPlot.WindowsForms.PlotView();
             button6 = new Button();
-            label5 = new Label();
-            numericUpDown2 = new NumericUpDown();
-            numericUpDown3 = new NumericUpDown();
-            label6 = new Label();
             plotView3 = new OxyPlot.WindowsForms.PlotView();
+            numericUpDown2 = new NumericUpDown();
+            plotView4 = new OxyPlot.WindowsForms.PlotView();
+            numericUpDown3 = new NumericUpDown();
+            label5 = new Label();
+            label6 = new Label();
+            numericUpDown4 = new NumericUpDown();
+            label7 = new Label();
+            numericUpDown5 = new NumericUpDown();
+            label9 = new Label();
+            numericUpDown6 = new NumericUpDown();
+            label10 = new Label();
+            numericUpDown7 = new NumericUpDown();
+            label11 = new Label();
+            numericUpDown9 = new NumericUpDown();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown6).BeginInit();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             panel4.SuspendLayout();
@@ -85,6 +76,12 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -171,7 +168,7 @@
             // button5
             // 
             button5.Enabled = false;
-            button5.Location = new Point(13, 1999);
+            button5.Location = new Point(19, 1939);
             button5.Name = "button5";
             button5.Size = new Size(111, 33);
             button5.TabIndex = 34;
@@ -179,150 +176,10 @@
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(36, 1629);
-            label9.Name = "label9";
-            label9.Size = new Size(101, 15);
-            label9.TabIndex = 33;
-            label9.Text = "Количество эпох";
-            // 
-            // numericUpDown4
-            // 
-            numericUpDown4.Location = new Point(13, 1647);
-            numericUpDown4.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            numericUpDown4.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown4.Name = "numericUpDown4";
-            numericUpDown4.Size = new Size(169, 23);
-            numericUpDown4.TabIndex = 32;
-            numericUpDown4.Value = new decimal(new int[] { 2000, 0, 0, 0 });
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(13, 1678);
-            label10.Name = "label10";
-            label10.Size = new Size(147, 15);
-            label10.TabIndex = 37;
-            label10.Text = "Шаг градиентного спуска";
-            // 
-            // numericUpDown5
-            // 
-            numericUpDown5.DecimalPlaces = 5;
-            numericUpDown5.Increment = new decimal(new int[] { 1, 0, 0, 327680 });
-            numericUpDown5.Location = new Point(13, 1696);
-            numericUpDown5.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown5.Minimum = new decimal(new int[] { 1, 0, 0, 327680 });
-            numericUpDown5.Name = "numericUpDown5";
-            numericUpDown5.Size = new Size(169, 23);
-            numericUpDown5.TabIndex = 36;
-            numericUpDown5.Value = new decimal(new int[] { 1, 0, 0, 131072 });
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(13, 1727);
-            label11.Name = "label11";
-            label11.Size = new Size(99, 15);
-            label11.TabIndex = 39;
-            label11.Text = "Число нейронов";
-            // 
-            // numericUpDown6
-            // 
-            numericUpDown6.Location = new Point(13, 1745);
-            numericUpDown6.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            numericUpDown6.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown6.Name = "numericUpDown6";
-            numericUpDown6.Size = new Size(169, 23);
-            numericUpDown6.TabIndex = 38;
-            numericUpDown6.Value = new decimal(new int[] { 50, 0, 0, 0 });
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Checked = true;
-            radioButton1.Location = new Point(3, 3);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(57, 19);
-            radioButton1.TabIndex = 40;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Adam";
-            radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(3, 28);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(47, 19);
-            radioButton2.TabIndex = 41;
-            radioButton2.Text = "SGD";
-            radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(radioButton1);
-            panel1.Controls.Add(radioButton2);
-            panel1.Location = new Point(13, 1774);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(69, 55);
-            panel1.TabIndex = 42;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(radioButton3);
-            panel2.Controls.Add(radioButton4);
-            panel2.Location = new Point(88, 1774);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(69, 55);
-            panel2.TabIndex = 43;
-            // 
-            // radioButton3
-            // 
-            radioButton3.AutoSize = true;
-            radioButton3.Checked = true;
-            radioButton3.Location = new Point(3, 3);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(48, 19);
-            radioButton3.TabIndex = 40;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "MSE";
-            radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(3, 28);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(50, 19);
-            radioButton4.TabIndex = 41;
-            radioButton4.Text = "MAE";
-            radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(13, 1832);
-            label12.Name = "label12";
-            label12.Size = new Size(147, 30);
-            label12.TabIndex = 44;
-            label12.Text = "Момент (только для SGD \r\nпо умолчанию 0)";
-            // 
-            // numericUpDown7
-            // 
-            numericUpDown7.DecimalPlaces = 5;
-            numericUpDown7.Increment = new decimal(new int[] { 1, 0, 0, 327680 });
-            numericUpDown7.Location = new Point(13, 1868);
-            numericUpDown7.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown7.Name = "numericUpDown7";
-            numericUpDown7.Size = new Size(169, 23);
-            numericUpDown7.TabIndex = 45;
-            // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(132, 2017);
+            label13.Location = new Point(19, 2004);
             label13.Name = "label13";
             label13.Size = new Size(25, 15);
             label13.TabIndex = 46;
@@ -481,100 +338,194 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(13, 1894);
-            label5.Name = "label5";
-            label5.Size = new Size(107, 15);
-            label5.TabIndex = 52;
-            label5.Text = "Количество слоев";
-            // 
-            // numericUpDown2
-            // 
-            numericUpDown2.Location = new Point(13, 1912);
-            numericUpDown2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(169, 23);
-            numericUpDown2.TabIndex = 53;
-            numericUpDown2.Value = new decimal(new int[] { 2, 0, 0, 0 });
-            // 
-            // numericUpDown3
-            // 
-            numericUpDown3.Location = new Point(10, 1961);
-            numericUpDown3.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
-            numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.Size = new Size(169, 23);
-            numericUpDown3.TabIndex = 55;
-            numericUpDown3.Value = new decimal(new int[] { 10, 0, 0, 0 });
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(10, 1943);
-            label6.Name = "label6";
-            label6.Size = new Size(88, 15);
-            label6.TabIndex = 54;
-            label6.Text = "Размер батчча";
-            // 
             // plotView3
             // 
-            plotView3.Location = new Point(208, 1609);
+            plotView3.Location = new Point(163, 2126);
             plotView3.Name = "plotView3";
             plotView3.PanCursor = Cursors.Hand;
             plotView3.Size = new Size(564, 564);
-            plotView3.TabIndex = 56;
+            plotView3.TabIndex = 52;
             plotView3.Text = "plotView3";
             plotView3.ZoomHorizontalCursor = Cursors.SizeWE;
             plotView3.ZoomRectangleCursor = Cursors.SizeNWSE;
             plotView3.ZoomVerticalCursor = Cursors.SizeNS;
             // 
-            // SimpleClassification
+            // numericUpDown2
+            // 
+            numericUpDown2.Enabled = false;
+            numericUpDown2.Location = new Point(19, 1978);
+            numericUpDown2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(130, 23);
+            numericUpDown2.TabIndex = 53;
+            numericUpDown2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
+            // 
+            // plotView4
+            // 
+            plotView4.Location = new Point(163, 2696);
+            plotView4.Name = "plotView4";
+            plotView4.PanCursor = Cursors.Hand;
+            plotView4.Size = new Size(564, 564);
+            plotView4.TabIndex = 54;
+            plotView4.Text = "plotView4";
+            plotView4.ZoomHorizontalCursor = Cursors.SizeWE;
+            plotView4.ZoomRectangleCursor = Cursors.SizeNWSE;
+            plotView4.ZoomVerticalCursor = Cursors.SizeNS;
+            // 
+            // numericUpDown3
+            // 
+            numericUpDown3.Location = new Point(19, 1666);
+            numericUpDown3.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
+            numericUpDown3.Name = "numericUpDown3";
+            numericUpDown3.Size = new Size(130, 23);
+            numericUpDown3.TabIndex = 55;
+            numericUpDown3.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(16, 1648);
+            label5.Name = "label5";
+            label5.Size = new Size(176, 15);
+            label5.TabIndex = 56;
+            label5.Text = "Количество нейронов в 1 слое";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(16, 1784);
+            label6.Name = "label6";
+            label6.Size = new Size(115, 15);
+            label6.TabIndex = 58;
+            label6.Text = "Скорость обучения";
+            // 
+            // numericUpDown4
+            // 
+            numericUpDown4.DecimalPlaces = 15;
+            numericUpDown4.Location = new Point(19, 1802);
+            numericUpDown4.Name = "numericUpDown4";
+            numericUpDown4.Size = new Size(130, 23);
+            numericUpDown4.TabIndex = 57;
+            numericUpDown4.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(16, 1830);
+            label7.Name = "label7";
+            label7.Size = new Size(141, 15);
+            label7.TabIndex = 60;
+            label7.Text = "Шаг дифиренцирования";
+            // 
+            // numericUpDown5
+            // 
+            numericUpDown5.DecimalPlaces = 15;
+            numericUpDown5.Location = new Point(19, 1848);
+            numericUpDown5.Name = "numericUpDown5";
+            numericUpDown5.Size = new Size(130, 23);
+            numericUpDown5.TabIndex = 59;
+            numericUpDown5.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(16, 1881);
+            label9.Name = "label9";
+            label9.Size = new Size(131, 15);
+            label9.TabIndex = 62;
+            label9.Text = "Штраф регуляризации";
+            // 
+            // numericUpDown6
+            // 
+            numericUpDown6.DecimalPlaces = 15;
+            numericUpDown6.Location = new Point(19, 1899);
+            numericUpDown6.Name = "numericUpDown6";
+            numericUpDown6.Size = new Size(130, 23);
+            numericUpDown6.TabIndex = 61;
+            numericUpDown6.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(16, 1690);
+            label10.Name = "label10";
+            label10.Size = new Size(176, 15);
+            label10.TabIndex = 64;
+            label10.Text = "Количество нейронов в 2 слое";
+            // 
+            // numericUpDown7
+            // 
+            numericUpDown7.Location = new Point(19, 1708);
+            numericUpDown7.Name = "numericUpDown7";
+            numericUpDown7.Size = new Size(130, 23);
+            numericUpDown7.TabIndex = 63;
+            numericUpDown7.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(16, 1737);
+            label11.Name = "label11";
+            label11.Size = new Size(176, 15);
+            label11.TabIndex = 66;
+            label11.Text = "Количество нейронов в 3 слое";
+            // 
+            // numericUpDown9
+            // 
+            numericUpDown9.Location = new Point(19, 1755);
+            numericUpDown9.Name = "numericUpDown9";
+            numericUpDown9.Size = new Size(130, 23);
+            numericUpDown9.TabIndex = 65;
+            numericUpDown9.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(208, 1609);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(460, 392);
+            pictureBox1.TabIndex = 67;
+            pictureBox1.TabStop = false;
+            // 
+            // SimpleNeroRegress
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            Controls.Add(plotView3);
-            Controls.Add(numericUpDown3);
+            Controls.Add(pictureBox1);
+            Controls.Add(label11);
+            Controls.Add(numericUpDown9);
+            Controls.Add(label10);
+            Controls.Add(numericUpDown7);
+            Controls.Add(label9);
+            Controls.Add(numericUpDown6);
+            Controls.Add(label7);
+            Controls.Add(numericUpDown5);
             Controls.Add(label6);
-            Controls.Add(numericUpDown2);
+            Controls.Add(numericUpDown4);
             Controls.Add(label5);
+            Controls.Add(numericUpDown3);
+            Controls.Add(plotView4);
+            Controls.Add(numericUpDown2);
+            Controls.Add(plotView3);
             Controls.Add(button6);
             Controls.Add(plotView2);
             Controls.Add(panel4);
             Controls.Add(plotView1);
             Controls.Add(panel3);
             Controls.Add(label13);
-            Controls.Add(numericUpDown7);
-            Controls.Add(label12);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Controls.Add(label11);
-            Controls.Add(numericUpDown6);
-            Controls.Add(label10);
-            Controls.Add(numericUpDown5);
             Controls.Add(label8);
             Controls.Add(button5);
-            Controls.Add(label9);
-            Controls.Add(numericUpDown4);
             Controls.Add(button3);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(button1);
-            Name = "SimpleClassification";
-            Size = new Size(795, 2176);
+            Name = "SimpleNeroRegress";
+            Size = new Size(795, 3263);
             Load += SetProperty_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown6).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
@@ -584,6 +535,12 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown8).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -599,20 +556,6 @@
         private Button button3;
         private Label label8;
         private Button button5;
-        private Label label9;
-        private NumericUpDown numericUpDown4;
-        private Label label10;
-        private NumericUpDown numericUpDown5;
-        private Label label11;
-        private NumericUpDown numericUpDown6;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private Panel panel1;
-        private Panel panel2;
-        private RadioButton radioButton3;
-        private RadioButton radioButton4;
-        private Label label12;
-        private NumericUpDown numericUpDown7;
         private Label label13;
         private Panel panel3;
         private RadioButton radioButton6;
@@ -628,10 +571,21 @@
         private NumericUpDown numericUpDown8;
         private OxyPlot.WindowsForms.PlotView plotView2;
         private Button button6;
-        private Label label5;
-        private NumericUpDown numericUpDown2;
-        private NumericUpDown numericUpDown3;
-        private Label label6;
         private OxyPlot.WindowsForms.PlotView plotView3;
+        private NumericUpDown numericUpDown2;
+        private OxyPlot.WindowsForms.PlotView plotView4;
+        private NumericUpDown numericUpDown3;
+        private Label label5;
+        private Label label6;
+        private NumericUpDown numericUpDown4;
+        private Label label7;
+        private NumericUpDown numericUpDown5;
+        private Label label9;
+        private NumericUpDown numericUpDown6;
+        private Label label10;
+        private NumericUpDown numericUpDown7;
+        private Label label11;
+        private NumericUpDown numericUpDown9;
+        private PictureBox pictureBox1;
     }
 }

@@ -56,7 +56,7 @@ namespace SimpleFuzzy
 
         private void button2_Click(object sender, EventArgs e)
         {
-            TrainCollection = BaseSet.now.GetTrainSet((int)numericUpDown1.Value).ToList().ConvertAll(t => ((float)t, (float)HasFunc.now.GetResult(t))).ToArray();
+            TrainCollection = BaseSet.now.GetTrainSet((int)numericUpDown1.Value).ToList().ConvertAll(t => ((float)t, (float)HasFunc.now.GetResult(t))).ToArray(); // Задается тренировочная выборка
             PlotModel model = new PlotModel();
             model.Title = HasFunc.now.Name;
             model.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom });
