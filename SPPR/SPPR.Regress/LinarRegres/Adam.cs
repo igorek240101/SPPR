@@ -34,7 +34,8 @@ namespace LinarRegres
                     for (int j = 0; j < model[i].Length; j++)
                     {
                         float bufer = model[i][j];
-                        k = n * (float)Math.Pow(alpha, a + 1);
+                        k = n * (float)Math.Pow(alpha, a + 1) + e;
+                        if (k == 0) k = e;
                         model[i][j] += k;
                         var add = lossFunc.GetLoss(new float[][] { calc(model, input[a]) }, new float[] { output[a] }) + l * regularization.Regular(model);
                         float dif = (add - loss) / k;

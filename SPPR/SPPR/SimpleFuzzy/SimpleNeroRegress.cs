@@ -161,6 +161,7 @@ namespace SPPR
                 Visual.Dispose();
                 Controls.Remove(Visual);
             }    
+            /*
             Visual = new VisualNeroNet();
             Visual.MLP = mLP;
             Visual.optimazer = Optimazer.now;
@@ -170,7 +171,7 @@ namespace SPPR
             Visual.l = (float)numericUpDown6.Value;
             Visual.k = (float)numericUpDown5.Value;
             Visual.Location = new Point(800, 1609);
-            Controls.Add(Visual);
+            Controls.Add(Visual);*/
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)

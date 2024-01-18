@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace LinarRegres
 {
-    internal class MSE : ILoss
+    internal class MAE : ILoss
     {
-        public string Name => "MSE";
+        public string Name => "MAE";
 
         public float GetLoss(float[][] calcRes, float[] trueValue)
         {
             float res = 0;
             for (int i = 0; i < calcRes.Length; i++)
             {
-                res += (float)Math.Pow(calcRes[i][0] - trueValue[i], 2);
+                res += (float)Math.Abs(calcRes[i][0] - trueValue[i]);
             }
             return res / calcRes.Length;
         }

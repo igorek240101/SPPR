@@ -320,7 +320,7 @@
             // 
             // plotView3
             // 
-            plotView3.Location = new Point(164, 1717);
+            plotView3.Location = new Point(205, 1717);
             plotView3.Name = "plotView3";
             plotView3.PanCursor = Cursors.Hand;
             plotView3.Size = new Size(564, 564);
@@ -343,7 +343,7 @@
             // 
             // plotView4
             // 
-            plotView4.Location = new Point(164, 2321);
+            plotView4.Location = new Point(205, 2321);
             plotView4.Name = "plotView4";
             plotView4.PanCursor = Cursors.Hand;
             plotView4.Size = new Size(564, 564);

@@ -92,6 +92,7 @@ namespace LinarRegres
 
         public void Reload()
         {
+            /*
             string[] fileNames = { "audi", "bmw", "ford", "hyundi", "merc", "skoda", "toyota", "vauxhall", "vw" };
             List<float[]> simple = new List<float[]>();
             Dictionary<string, float> modelCode = new Dictionary<string, float>();
@@ -159,7 +160,7 @@ namespace LinarRegres
                 int index = random.Next(simple.Count);
                 main.Add(simple[index]);
                 simple.RemoveAt(index);
-            }
+            }*/
         }
     }
 }

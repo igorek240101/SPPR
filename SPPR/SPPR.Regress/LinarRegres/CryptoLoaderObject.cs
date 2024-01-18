@@ -2,11 +2,11 @@
 
 namespace LinarRegres
 {
-    public class Auto : IGetClassificationSetObject
+    internal class CryptoLoaderObject : IGetClassificationSetObject
     {
         public string ConnctionString { get => null; set { } }
 
-        public string Name => "Автомобили";
+        public string Name => "Крипта - объект";
 
 
         List<object[]> main = new List<object[]>();
@@ -14,7 +14,7 @@ namespace LinarRegres
         Random random = new Random();
 
 
-        public Auto()
+        public CryptoLoaderObject()
         {
             Reload();
         }
@@ -88,44 +88,38 @@ namespace LinarRegres
 
         public void Reload()
         {
-            /*
-            string[] fileNames = { "audi", "bmw", "ford", "hyundi", "merc", "skoda", "toyota", "vauxhall", "vw" };
             List<object[]> simple = new List<object[]>();
-            foreach (var name in fileNames)
+            Dictionary<string, float> modelCode = new Dictionary<string, float>();
+            FileStream file = new FileStream($"D:\\СГМ\\Лабораторные работы\\crypto-markets.csv", FileMode.Open);
+            StreamReader reader = new StreamReader(file);
+            reader.ReadLine();
+            while (!reader.EndOfStream || simple.Count < 942297)
             {
-                FileStream file = new FileStream($"Auto\\{name}.csv", FileMode.Open);
-                StreamReader reader = new StreamReader(file);
-                reader.ReadLine();
-                while (!reader.EndOfStream)
+                var v = reader.ReadLine().Split(',').ToList();
+                v = v.ConvertAll(x => x.Replace('.', ','));
+                simple.Add(new object[]
                 {
-                    var v = reader.ReadLine().Split(',').ToList();
-                    v[0] = name + v[0];
-                    v.Insert(0, v[2]);
-                    v.RemoveAt(3);
-                    simple.Add(new object[] 
-                    {
-                        double.Parse(v[0].Replace('.', ',')), // Цена
-                        v[1], // Модель
-                        v[2], // Год
-                        DateTime.Now.Year - double.Parse(v[2]), // Возраст
-                        v[3], // КПП
-                        double.Parse(v[4].Replace('.', ',')), // Пробег
-                        v[5], // Тип топлива
-                        double.Parse(v[6].Replace('.', ',')), // Дорожный налог
-                        double.Parse(v[7].Replace('.', ',')), // Расход топлива
-                        double.Parse(v[8].Replace('.', ',')) // Объем двигателя
-                    });
-                }
-                reader.Close();
-                file.Close();
+                    double.Parse(v[8]),
+                    //v[0],
+                    (double)(DateTime.Parse(v[3]).Ticks - new DateTime(2010, 01, 01).Ticks),
+                    double.Parse(v[5]),
+                    double.Parse(v[6]),
+                    double.Parse(v[7]),
+                    double.Parse(v[9]),
+                    double.Parse(v[10]),
+                    double.Parse(v[11]),
+                    double.Parse(v[12])
+                });
             }
+            reader.Close();
+            file.Close();
             main = new List<object[]>();
             while (simple.Count > 0)
             {
                 int index = random.Next(simple.Count);
                 main.Add(simple[index]);
                 simple.RemoveAt(index);
-            }*/
+            }
         }
     }
 }
